@@ -27,17 +27,18 @@
 import express from 'express';
 import path from 'path';
 const app = express()
-
+const abPath = path.resolve('view')
 app.get("/", (req, resp) => {
-    const abPath = path.resolve('view/home.html')
-    resp.sendFile(abPath)
+    resp.sendFile(abPath+"/home.html")
 })
 app.get("/login", (req, resp) => {
-    const abPath = path.resolve('view/login.html')
-    resp.sendFile(abPath)
+  
+    resp.sendFile(abPath+"/login.html")
 })
 app.get("/about", (req, resp) => {
-    const abPath = path.resolve('view/about.html')
-    resp.sendFile(abPath)
+    resp.sendFile(abPath+"/about.html")
+})
+app.use((req,resp)=>{
+  resp.status(404).sendFile(abPath+"/404.html")
 })
 app.listen(3200)
