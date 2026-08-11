@@ -28,6 +28,10 @@ import express from 'express';
 import path from 'path';
 const app = express()
 const abPath = path.resolve('view')
+const publicPath = path.resolve('public')
+//Css ko dikhane k liye
+app.use(express.static(publicPath));
+
 app.get("/", (req, resp) => {
     resp.sendFile(abPath+"/home.html")
 })
